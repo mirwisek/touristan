@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.libraries.places.api.model.AutocompletePrediction
+import com.bumptech.glide.Glide
+import com.google.android.libraries.places.api.model.Place
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.quetta.touristan.model.TourPlace
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -48,7 +51,9 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
         recyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            vmHome.placesIntent.send(HomeIntent.GetPlaces)
+            // Only send request if there are no items
+            if(adapter.itemCount <= 0)
+                vmHome.placesIntent.send(HomeIntent.GetPlaces)
             vmHome.state.collect { state ->
                 log("State Arrived ${state}")
                 when(state) {
@@ -61,14 +66,14 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
                         tvHint.text = state.error ?: "Unknown error"
                         tvHint.visible()
                     }
-                    is HomeState.Places -> {
+                    is HomeState.Result -> {
                         progressBar.gone()
-                        state.places.let {
+                        state.places?.results?.let {
                             if(it.isEmpty()) {
                                 tvHint.text = getString(R.string.empty_list)
                                 tvHint.visible()
                             } else {
-                                adapter.updateItems(it)
+                                adapter.updateItems(it.shuffled())
                             }
                         }
                     }
@@ -91,9 +96,10 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
         val title: TextView = itemView.findViewById(R.id.title)
         val primary: TextView = itemView.findViewById(R.id.textPrimary)
         val secondary: TextView = itemView.findViewById(R.id.textSecondary)
+        val image: ImageView = itemView.findViewById(R.id.img)
     }
 
-    private inner class PlacesAdapter(private var places: List<AutocompletePrediction>? = null) :
+    private inner class PlacesAdapter(private var places: List<TourPlace>? = null) :
         RecyclerView.Adapter<ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -102,13 +108,25 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             places?.get(position)?.let { item ->
-                holder.title.text = item.getFullText(null)
-                holder.primary.text = item.getPrimaryText(null)
-                holder.secondary.text = item.getSecondaryText(null)
+                holder.title.text = item.name
+                holder.primary.text = item.address
+                holder.secondary.text = "${item.rating}"
+
+                if(item.photos.isNotEmpty()) {
+
+                    holder.image.visible()
+                    Glide.with(requireContext())
+                        .load(vmHome.loadImage(item.photos[0]))
+                        .into(holder.image)
+                }
+
+//                holder.title.text = item.getFullText(null)
+//                holder.primary.text = item.getPrimaryText(null)
+//                holder.secondary.text = item.getSecondaryText(null)
             }
         }
 
-        fun updateItems(places: List<AutocompletePrediction>) {
+        fun updateItems(places: List<TourPlace>) {
             this.places = places
             notifyDataSetChanged()
         }
