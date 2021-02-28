@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Touristan</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="touristan">touristan</string>
     <string name="empty_list">List is empty</string>
+    <string name="google_signin_token">340667296687-2uq7c8ncv5i5tq9tlvp6dg0bahtjteo0.apps.googleusercontent.com</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

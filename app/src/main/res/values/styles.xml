@@ -1,15 +1,10 @@
 <resources>
 
-    <style name="Widget.Theme.Touristan.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+    <style name="Widget.Theme.Touristan.NoActionBar.Fullscreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
 
-    <style name="Widget.Theme.Touristan.ButtonBar.Fullscreen" parent="">
-        <item name="android:background">@color/black_overlay</item>
-        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
-    </style>
-
-    <style name="CardTopRoundedCorners" >
+    <style name="CardTopRoundedCorners">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopLeft">20dp</item>
         <item name="cornerSizeTopRight">20dp</item>
