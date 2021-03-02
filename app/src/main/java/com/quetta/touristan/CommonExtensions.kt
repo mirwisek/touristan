@@ -3,11 +3,25 @@ package com.quetta.touristan
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.CoroutineScope
+
+const val USER_SHARED_PREFS = "tour-shared-prefs"
+
+val Context.sharedPrefs: SharedPreferences
+    get() {
+        return getSharedPreferences(USER_SHARED_PREFS, Context.MODE_PRIVATE)
+    }
+
+val LatLng.stringVal: String
+    get() {
+        return "${latitude},$longitude"
+    }
 
 fun View.visible() {
     visibility = View.VISIBLE

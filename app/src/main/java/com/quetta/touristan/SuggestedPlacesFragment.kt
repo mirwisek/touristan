@@ -26,6 +26,7 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
 
     companion object {
         const val TAG = "SuggestedPlacesFragment"
+        const val RADIUS = 1000
     }
 
     override fun onCreateView(
@@ -51,6 +52,10 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
         recyclerView.adapter = adapter
 
         lifecycleScope.launch {
+
+            val location = context!!.sharedPrefs.getString(MapsActivity.KEY_USER_SAVED_LOCATION, null)
+            vmHome.handleIntent(location, RADIUS)
+
             // Only send request if there are no items
             if(adapter.itemCount <= 0)
                 vmHome.placesIntent.send(HomeIntent.GetPlaces)

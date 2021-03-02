@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -14,6 +15,7 @@ import android.os.Bundle
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.edit
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -31,6 +33,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     companion object {
         const val REQUEST_PERMISSION_LOCATION = 4251
         const val REQUEST_CHECK_SETTINGS = 3422
+        const val KEY_USER_SAVED_LOCATION = "userLocationSvd"
 
         val permissions: Array<String> = arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -117,7 +120,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * Method to perform operation on Location
      */
     private fun onLocationReceived(location: Location) {
+
         val loc = LatLng(location.latitude, location.longitude)
+
+        sharedPrefs.edit(true) {
+            putString(KEY_USER_SAVED_LOCATION, loc.stringVal)
+        }
+
         val position = CameraPosition.builder()
             .target(loc)
             .zoom(14f)

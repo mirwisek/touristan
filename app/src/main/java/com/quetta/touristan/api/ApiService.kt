@@ -17,6 +17,8 @@ interface ApiService {
     @GET(".")
     fun getPlaces(
         @Query("type") type: String = "tourist_attraction",
+        @Query("location") location: String? = null,
+        @Query("radius") radius: Int? = null,
         @Query("key") key: String = RetrofitBuilder.key
     ): Call<Places>
 

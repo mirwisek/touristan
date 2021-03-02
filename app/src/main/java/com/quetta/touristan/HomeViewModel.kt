@@ -30,16 +30,11 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 
     val state: StateFlow<HomeState> get() = _state
 
-
-    init {
-        handleIntent()
-    }
-
-    private fun handleIntent() {
+    fun handleIntent(location: String?, radius: Int?) {
         viewModelScope.launch {
             placesIntent.consumeAsFlow().collect {
                 when (it) {
-                    is HomeIntent.GetPlaces -> getPlaces()
+                    is HomeIntent.GetPlaces -> getPlaces(location, radius)
                 }
             }
         }
@@ -66,12 +61,12 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 //        }
 //    }
 
-    private fun getPlaces() {
+    private fun getPlaces(location: String?, radius: Int?) {
 
         viewModelScope.launch {
             _state.value = HomeState.Loading
 
-            repository.getPlacesApi(object: Callback<Places> {
+            val callback = object: Callback<Places> {
 
                 override fun onResponse(call: Call<Places>, response: Response<Places>) {
                     if(response.isSuccessful) {
@@ -89,7 +84,9 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
                     t.printStackTrace()
                 }
 
-            })
+            }
+
+            repository.getPlacesApi(callback, location, radius)
         }
     }
 
