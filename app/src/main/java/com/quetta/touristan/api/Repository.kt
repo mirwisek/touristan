@@ -13,8 +13,8 @@ class Repository(
     fun getPlaces(request: FindAutocompletePredictionsRequest) =
         placesClient.findAutocompletePredictions(request)
 
-    fun getPlacesApi(callback: Callback<Places>, location: String?, radius: Int?, type: String? = null) =
-        apiHelper.getPlaces(location = location, radius = radius, callback = callback)
+    fun getPlacesApi(callback: Callback<Places>, location: String?, radius: Int?, type: String) =
+        apiHelper.getPlaces(location = location, radius = radius, callback = callback, type = type)
 
 
 }

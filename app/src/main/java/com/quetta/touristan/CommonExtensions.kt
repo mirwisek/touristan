@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.model.LatLng
+import com.quetta.touristan.model.Location
 import kotlinx.coroutines.CoroutineScope
 
 const val USER_SHARED_PREFS = "tour-shared-prefs"
@@ -21,6 +22,11 @@ val Context.sharedPrefs: SharedPreferences
 val LatLng.stringVal: String
     get() {
         return "${latitude},$longitude"
+    }
+
+val Location.latLng: LatLng
+    get() {
+        return LatLng(lat, lng)
     }
 
 fun View.visible() {

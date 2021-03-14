@@ -1,6 +1,7 @@
 package com.quetta.touristan.model
 
 import com.google.android.libraries.places.api.model.PhotoMetadata
+import com.google.geo.type.Viewport
 import com.google.gson.annotations.SerializedName
 
 data class Places(
@@ -17,6 +18,7 @@ data class TourPlace(
     var placeId: String? = null,
     var types: List<String> = listOf(),
     var rating: Float = 0F,
+    var geometry: Geometry? = null,
     val photos: List<PlacePhoto> = listOf()
 )
 
@@ -27,6 +29,21 @@ data class PlacePhoto(
     val attribution: List<String> = listOf(),
     @SerializedName("photo_reference")
     val reference: String? = null,
+)
+
+data class Geometry(
+    var location: Location = Location(),
+    var viewport: ViewPort = ViewPort()
+)
+
+data class ViewPort(
+    val northeast: Location = Location(),
+    val southwest: Location = Location()
+)
+
+data class Location (
+    var lat: Double = 0.0,
+    var lng: Double = 0.0
 )
 
 //{

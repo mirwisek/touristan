@@ -7,10 +7,10 @@ import retrofit2.Callback
 class ApiHelper(private val apiService: ApiService) {
 
 
-    fun getPlaces(callback: Callback<Places>, location: String?, radius: Int?, type: String? = null) {
+    fun getPlaces(callback: Callback<Places>, location: String?, radius: Int?, type: String) {
         if(location == null)
             apiService.getPlaces().enqueue(callback)
         else
-            apiService.getPlaces(location = location, radius = radius).enqueue(callback)
+            apiService.getPlaces(location = location, radius = radius, type = type).enqueue(callback)
     }
 }

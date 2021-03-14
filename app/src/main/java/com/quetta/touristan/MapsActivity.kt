@@ -16,6 +16,9 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -27,6 +30,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -54,18 +59,64 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
 
+        val vmMaps = ViewModelProvider(this).get(MapsActivityViewModel::class.java)
+
         isLocationEnabled()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        /*
+         * Setup the chips list
+         */
+        val chipsRecyclerView = findViewById<RecyclerView>(R.id.rvChips)
         val bottomSheet = SuggestedPlacesFragment()
 
-        val cardView = findViewById<CircularRevealCardView>(R.id.cardView)
-        cardView.setOnClickListener {
+        val chipsAdapter = ChipsAdapter(PlaceType.allValues) { clickedPlace ->
+            vmMaps.selectedChip.value = PlaceType.getApiValue(clickedPlace)
             bottomSheet.show(supportFragmentManager, SuggestedPlacesFragment.TAG)
         }
+
+        chipsRecyclerView.adapter = chipsAdapter
+
+
+        val cardView = findViewById<CircularRevealCardView>(R.id.cardView)
+//        cardView.setOnClickListener {
+//            bottomSheet.show(supportFragmentManager, SuggestedPlacesFragment.TAG)
+//        }
+
+        lifecycleScope.launch {
+            vmMaps.state.collect { state ->
+                when (state) {
+                    is HomeState.Idle -> {
+                    }
+                    is HomeState.Loading -> {
+
+                    }
+                    is HomeState.Error -> {
+                        mMap.clear()
+                    }
+                    is HomeState.Result -> {
+                        state.places?.results?.let { list ->
+                            mMap.clear()
+                            list.forEach { tourPlace ->
+                                mMap.addMarker(
+                                    MarkerOptions()
+                                        .position(tourPlace.geometry!!.location.latLng)
+                                        .title(tourPlace.name)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    fun drawOnMap(callback: GoogleMap.() -> Unit) {
+        mMap.callback()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -73,7 +124,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         fuesedApi = LocationServices.getFusedLocationProviderClient(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(!hasPermissions(this, *permissions)) {
+            if (!hasPermissions(this, *permissions)) {
                 requestPermissions()
             } else {
                 onPermissionGranted()
@@ -83,12 +134,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     @SuppressLint("MissingPermission")
     private fun onPermissionGranted() {
-        if(hasPermissions(this, *permissions)) {
+        if (hasPermissions(this, *permissions)) {
+            // Get last location
             fuesedApi.lastLocation.addOnCompleteListener { task ->
-                if(task.isSuccessful) {
+                if (task.isSuccessful) {
                     val location = task.result
-                    if(location == null){
-                        if(isLocationEnabled())
+                    // If last location isn't returned, make a new request
+                    if (location == null) {
+                        // Before retrieving location check if gps is enabled
+                        if (isLocationEnabled())
                             forceLocation()
                         else
                             enableGPS()
@@ -106,7 +160,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     private fun forceLocation() {
         isLocationEnabled()
-        val callback = object: LocationCallback() {
+        val callback = object : LocationCallback() {
             override fun onLocationResult(result: LocationResult) {
                 log("Location received ${result.locations}")
                 onLocationReceived(result.locations[0])
@@ -143,11 +197,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         ActivityCompat.requestPermissions(this, permissions, REQUEST_PERMISSION_LOCATION)
     }
 
-    private fun hasPermissions(context: Context, vararg permissions: String): Boolean = permissions.all {
-        ActivityCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
-    }
+    private fun hasPermissions(context: Context, vararg permissions: String): Boolean =
+        permissions.all {
+            ActivityCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
+        }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         when (requestCode) {
             REQUEST_PERMISSION_LOCATION -> {
                 if (!(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
@@ -163,9 +222,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        when(requestCode) {
+        when (requestCode) {
             REQUEST_CHECK_SETTINGS -> {
-                if(resultCode == Activity.RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     forceLocation()
                 }
             }

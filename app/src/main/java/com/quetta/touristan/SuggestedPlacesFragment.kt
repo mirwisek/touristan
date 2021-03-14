@@ -12,7 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.libraries.places.api.model.Place
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.quetta.touristan.model.TourPlace
 import kotlinx.coroutines.flow.collect
@@ -21,6 +24,7 @@ import kotlinx.coroutines.launch
 class SuggestedPlacesFragment : BottomSheetDialogFragment() {
 
     private lateinit var vmHome: HomeViewModel
+    private lateinit var vmMapsActivity: MapsActivityViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PlacesAdapter
 
@@ -41,12 +45,39 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
         // We need to send PlacesClient initialized in Application to Repository through ViewModel
         val vmFactory = HomeViewModelFactory((requireActivity().application as TouristanApp))
         vmHome = ViewModelProvider(requireActivity(), vmFactory).get(HomeViewModel::class.java)
+        vmMapsActivity = ViewModelProvider(requireActivity()).get(MapsActivityViewModel::class.java)
 
         recyclerView = view.findViewById(R.id.list)
         val progressBar = view.findViewById<ProgressBar>(R.id.progress)
         val tvHint = view.findViewById<TextView>(R.id.textHint)
 
-        adapter = PlacesAdapter()
+        adapter = PlacesAdapter { tourPlace ->
+
+            (requireActivity() as MapsActivity).drawOnMap {
+                tourPlace.geometry?.let { geo ->
+                    clear()
+
+                    addMarker(
+                        MarkerOptions()
+                            .position(tourPlace.geometry!!.location.latLng)
+                            .title(tourPlace.name)
+                    )
+
+                    val position = CameraPosition.builder()
+                        .target(geo.location.latLng)
+                        .zoom(14f)
+                        .build()
+
+//                    setLatLngBoundsForCameraTarget(LatLngBounds(
+//                        geo.viewport.southwest.latLng,
+//                        geo.viewport.northeast.latLng
+//                    ))
+
+                    animateCamera(CameraUpdateFactory.newCameraPosition(position))
+                }
+                dismiss()
+            }
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
@@ -54,13 +85,18 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
         lifecycleScope.launch {
 
             val location = context!!.sharedPrefs.getString(MapsActivity.KEY_USER_SAVED_LOCATION, null)
-            vmHome.handleIntent(location, RADIUS)
+
+            vmMapsActivity.selectedChip.observe(requireActivity()) { selectedType ->
+                vmHome.handleIntent(location, RADIUS, selectedType)
+            }
 
             // Only send request if there are no items
             if(adapter.itemCount <= 0)
                 vmHome.placesIntent.send(HomeIntent.GetPlaces)
             vmHome.state.collect { state ->
-                log("State Arrived ${state}")
+                // Inform activity to draw markers
+                vmMapsActivity.state.value = state
+
                 when(state) {
                     is HomeState.Idle -> { }
                     is HomeState.Loading -> {
@@ -78,7 +114,7 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
                                 tvHint.text = getString(R.string.empty_list)
                                 tvHint.visible()
                             } else {
-                                adapter.updateItems(it.shuffled())
+                                adapter.updateItems(it)
                             }
                         }
                     }
@@ -104,7 +140,7 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
         val image: ImageView = itemView.findViewById(R.id.img)
     }
 
-    private inner class PlacesAdapter(private var places: List<TourPlace>? = null) :
+    private inner class PlacesAdapter(private var places: List<TourPlace>? = null, private val onClick: ((TourPlace) -> Unit)? = null) :
         RecyclerView.Adapter<ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -123,6 +159,10 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
                     Glide.with(requireContext())
                         .load(vmHome.loadImage(item.photos[0]))
                         .into(holder.image)
+                }
+
+                holder.itemView.setOnClickListener {
+                    onClick?.invoke(item)
                 }
 
 //                holder.title.text = item.getFullText(null)

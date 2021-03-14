@@ -1,10 +1,8 @@
 package com.quetta.touristan
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.api.model.TypeFilter
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.quetta.touristan.api.Repository
 import com.quetta.touristan.api.RetrofitBuilder
 import com.quetta.touristan.model.PlacePhoto
@@ -30,15 +28,27 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 
     val state: StateFlow<HomeState> get() = _state
 
-    fun handleIntent(location: String?, radius: Int?) {
+    private var selectedChip: String? = null
+
+    fun handleIntent(location: String?, radius: Int?, type: String) {
         viewModelScope.launch {
             placesIntent.consumeAsFlow().collect {
                 when (it) {
-                    is HomeIntent.GetPlaces -> getPlaces(location, radius)
+                    is HomeIntent.GetPlaces -> {
+                        if(selectedChip == null) {
+                            getPlaces(location, radius, type)
+                            selectedChip = type
+                        } else {
+                            // Only call if the values aren't the same, we want to reduce API cost
+                            if(type != selectedChip)
+                                getPlaces(location, radius, type)
+                        }
+                    }
                 }
             }
         }
     }
+
 
 //    private fun getPlaces() {
 //
@@ -61,7 +71,7 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 //        }
 //    }
 
-    private fun getPlaces(location: String?, radius: Int?) {
+    private fun getPlaces(location: String?, radius: Int?, type: String) {
 
         viewModelScope.launch {
             _state.value = HomeState.Loading
@@ -86,7 +96,7 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 
             }
 
-            repository.getPlacesApi(callback, location, radius)
+            repository.getPlacesApi(callback, location, radius, type)
         }
     }
 
