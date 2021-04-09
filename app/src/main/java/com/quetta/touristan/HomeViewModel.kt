@@ -3,12 +3,12 @@ package com.quetta.touristan
 import androidx.lifecycle.*
 import com.quetta.touristan.api.Repository
 import com.quetta.touristan.api.RetrofitBuilder
+import com.quetta.touristan.model.HomeIntent
+import com.quetta.touristan.model.HomeState
 import com.quetta.touristan.model.PlacePhoto
 import com.quetta.touristan.model.Places
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.consume
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect

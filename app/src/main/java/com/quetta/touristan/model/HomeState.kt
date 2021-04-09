@@ -1,6 +1,4 @@
-package com.quetta.touristan
-
-import com.quetta.touristan.model.Places
+package com.quetta.touristan.model
 
 sealed class HomeState {
     object Idle: HomeState()

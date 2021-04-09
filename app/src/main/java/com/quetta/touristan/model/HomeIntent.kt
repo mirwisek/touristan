@@ -1,4 +1,4 @@
-package com.quetta.touristan
+package com.quetta.touristan.model
 
 sealed class HomeIntent {
 

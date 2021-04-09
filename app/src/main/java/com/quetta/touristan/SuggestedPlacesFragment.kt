@@ -1,6 +1,5 @@
 package com.quetta.touristan
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +16,11 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.quetta.touristan.custom.PlacesAdapter
+import com.quetta.touristan.model.HomeIntent
+import com.quetta.touristan.model.HomeState
 import com.quetta.touristan.model.TourPlace
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -61,7 +62,7 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
         val progressBar = view.findViewById<ProgressBar>(R.id.progress)
         val tvHint = view.findViewById<TextView>(R.id.textHint)
 
-        adapter = PlacesAdapter { tourPlace ->
+        adapter = PlacesAdapter(requireContext(), vmHome) { tourPlace ->
 
             (requireActivity() as MapsActivity).drawOnMap {
                 tourPlace.geometry?.let { geo ->
@@ -96,7 +97,7 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
 
         job = lifecycleScope.launch {
 
-            val location = context!!.sharedPrefs.getString(MapsActivity.KEY_USER_SAVED_LOCATION, null)
+            val location = requireContext().sharedPrefs.getString(MapsActivity.KEY_USER_SAVED_LOCATION, null)
 
             category?.let { categoryPlace ->
                 vmHome.handleIntent(location, RADIUS, categoryPlace)
@@ -143,63 +144,5 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
     override fun onDestroy() {
         job?.cancel()
         super.onDestroy()
-    }
-
-    private inner class ViewHolder(
-        inflater: LayoutInflater,
-        parent: ViewGroup
-    ) : RecyclerView.ViewHolder(
-        inflater.inflate(
-            R.layout.fragment_suggested_places_list_dialog_item,
-            parent,
-            false
-        )
-    ) {
-
-        val title: TextView = itemView.findViewById(R.id.title)
-        val primary: TextView = itemView.findViewById(R.id.textPrimary)
-        val secondary: TextView = itemView.findViewById(R.id.textSecondary)
-        val image: ImageView = itemView.findViewById(R.id.img)
-    }
-
-    private inner class PlacesAdapter(private var places: List<TourPlace>? = null, private val onClick: ((TourPlace) -> Unit)? = null) :
-        RecyclerView.Adapter<ViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            return ViewHolder(LayoutInflater.from(parent.context), parent)
-        }
-
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            places?.get(position)?.let { item ->
-                holder.title.text = item.name
-                holder.primary.text = item.address
-                holder.secondary.text = "${item.rating}"
-
-                if(item.photos.isNotEmpty()) {
-
-                    holder.image.visible()
-                    Glide.with(requireContext())
-                        .load(vmHome.loadImage(item.photos[0]))
-                        .into(holder.image)
-                }
-
-                holder.itemView.setOnClickListener {
-                    onClick?.invoke(item)
-                }
-
-//                holder.title.text = item.getFullText(null)
-//                holder.primary.text = item.getPrimaryText(null)
-//                holder.secondary.text = item.getSecondaryText(null)
-            }
-        }
-
-        fun updateItems(places: List<TourPlace>) {
-            this.places = places
-            notifyDataSetChanged()
-        }
-
-        override fun getItemCount(): Int {
-            return places?.size ?: 0
-        }
     }
 }

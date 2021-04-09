@@ -18,12 +18,12 @@
 
     <item
         android:id="@+id/navigation_restaurant"
-        android:icon="@drawable/ic_bank"
+        android:icon="@drawable/ic_restaurant"
         android:title="@string/title_restaurant" />
 
     <item
         android:id="@+id/navigation_university"
-        android:icon="@drawable/ic_bank"
+        android:icon="@drawable/ic_university"
         android:title="@string/title_university" />
 
 </menu>

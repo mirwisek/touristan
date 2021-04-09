@@ -30,6 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.quetta.touristan.custom.CategoriesAdapter
+import com.quetta.touristan.model.HomeState
 import com.quetta.touristan.model.PlaceType
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -39,6 +40,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     companion object {
         const val REQUEST_PERMISSION_LOCATION = 4251
         const val REQUEST_CHECK_SETTINGS = 3422
+        val QUETTA = LatLng(30.183270, 66.996452)
         const val KEY_USER_SAVED_LOCATION = "userLocationSvd"
 
         val permissions: Array<String> = arrayOf(

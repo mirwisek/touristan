@@ -11,4 +11,10 @@
     <string name="title_restaurant">Restaurant</string>
     <string name="title_university">University</string>
     <string name="arg_category">category</string>
+    <string name="category_hospital">hospital</string>
+    <string name="category_bank">bank</string>
+    <string name="category_restaurant">restaurant</string>
+    <string name="category_picnic">tourist_attraction</string>
+    <string name="category_university">university</string>
+    <string name="action_sign_out">Sign Out</string>
 </resources>

@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.quetta.touristan.MainActivity
 import com.quetta.touristan.MapsActivity
 import com.quetta.touristan.R
 import com.quetta.touristan.toast
@@ -32,10 +33,12 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
 
         // If signed in already then skip the login activity
-        FirebaseAuth.getInstance().currentUser?.let {
-            startActivity(Intent(this, MapsActivity::class.java))
-            finish()
+        if(GoogleSignIn.getLastSignedInAccount(this) != null) {
+            startMainActivity()
         }
+//        FirebaseAuth.getInstance().currentUser?.let {
+//            startMainActivity()
+//        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,9 +82,14 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         if(user == null) {
             toast("User is null")
+            finish()
         } else {
-            startActivity(Intent(this, MapsActivity::class.java))
+            startMainActivity()
         }
+    }
+
+    private fun startMainActivity() {
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
