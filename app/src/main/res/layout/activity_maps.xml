@@ -8,6 +8,19 @@
 
     <include layout="@layout/fragment_maps" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategories"
+        android:orientation="horizontal"
+        tools:listitem="@layout/item_category"
+        android:background="@color/white"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -27,16 +40,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvChips"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                tools:listitem="@layout/item_chips"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title"/>
 
             <ImageView
                 android:layout_width="wrap_content"

@@ -22,6 +22,6 @@ class MapsActivityViewModel : ViewModel() {
     val state = MutableStateFlow<HomeState>(HomeState.Idle)
 
 
-    val selectedChip = MutableLiveData<String>()
+    val selectedCategory = MutableLiveData<String>()
 
 }

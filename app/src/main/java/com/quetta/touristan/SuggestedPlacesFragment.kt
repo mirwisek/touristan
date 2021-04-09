@@ -1,5 +1,6 @@
 package com.quetta.touristan
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.quetta.touristan.model.TourPlace
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -27,10 +29,18 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
     private lateinit var vmMapsActivity: MapsActivityViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PlacesAdapter
+    private var category: String? = null
+    private var job: Job? = null
 
     companion object {
         const val TAG = "SuggestedPlacesFragment"
         const val RADIUS = 1000
+        const val KEY_ARG_CATEGORY = "category"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        category = requireArguments().getString(KEY_ARG_CATEGORY, null)
     }
 
     override fun onCreateView(
@@ -82,45 +92,57 @@ class SuggestedPlacesFragment : BottomSheetDialogFragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
-        lifecycleScope.launch {
+
+
+        job = lifecycleScope.launch {
 
             val location = context!!.sharedPrefs.getString(MapsActivity.KEY_USER_SAVED_LOCATION, null)
 
-            vmMapsActivity.selectedChip.observe(requireActivity()) { selectedType ->
-                vmHome.handleIntent(location, RADIUS, selectedType)
-            }
+            category?.let { categoryPlace ->
+                vmHome.handleIntent(location, RADIUS, categoryPlace)
 
-            // Only send request if there are no items
-            if(adapter.itemCount <= 0)
+//            vmMapsActivity.selectedCategory.observe(requireActivity()) { selectedType ->
+//            }
+
+                // Only send request if there are no items
+//            if(adapter.itemCount <= 0)
+
                 vmHome.placesIntent.send(HomeIntent.GetPlaces)
-            vmHome.state.collect { state ->
-                // Inform activity to draw markers
-                vmMapsActivity.state.value = state
 
-                when(state) {
-                    is HomeState.Idle -> { }
-                    is HomeState.Loading -> {
-                        progressBar.visible()
-                    }
-                    is HomeState.Error -> {
-                        progressBar.gone()
-                        tvHint.text = state.error ?: "Unknown error"
-                        tvHint.visible()
-                    }
-                    is HomeState.Result -> {
-                        progressBar.gone()
-                        state.places?.results?.let {
-                            if(it.isEmpty()) {
-                                tvHint.text = getString(R.string.empty_list)
-                                tvHint.visible()
-                            } else {
-                                adapter.updateItems(it)
+                vmHome.state.collect { state ->
+                    when(state) {
+                        is HomeState.Idle -> { }
+                        is HomeState.Loading -> {
+                            progressBar.visible()
+                        }
+                        is HomeState.Error -> {
+                            progressBar.gone()
+                            tvHint.text = state.error ?: "Unknown error"
+                            tvHint.visible()
+                        }
+                        is HomeState.Result -> {
+                            progressBar.gone()
+                            state.places?.results?.let {
+                                if(it.isEmpty()) {
+                                    tvHint.text = getString(R.string.empty_list)
+                                    tvHint.visible()
+                                } else {
+                                    adapter.updateItems(it)
+                                }
                             }
                         }
                     }
+
+                    // Inform activity to draw markers
+                    vmMapsActivity.state.value = state
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        job?.cancel()
+        super.onDestroy()
     }
 
     private inner class ViewHolder(

@@ -6,7 +6,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -30,6 +29,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
+import com.quetta.touristan.custom.CategoriesAdapter
+import com.quetta.touristan.model.PlaceType
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -70,15 +71,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         /*
          * Setup the chips list
          */
-        val chipsRecyclerView = findViewById<RecyclerView>(R.id.rvChips)
-        val bottomSheet = SuggestedPlacesFragment()
+        val rvCategories = findViewById<RecyclerView>(R.id.rvCategories)
 
-        val chipsAdapter = ChipsAdapter(PlaceType.allValues) { clickedPlace ->
-            vmMaps.selectedChip.value = PlaceType.getApiValue(clickedPlace)
+        val categoriesAdapter = CategoriesAdapter(this, PlaceType.allValues) { clickedPlace ->
+            val selected = PlaceType.getApiValue(clickedPlace)
+            vmMaps.selectedCategory.value = selected
+            val bottomSheet = SuggestedPlacesFragment().apply {
+                this.arguments = Bundle().apply {
+                    putString(SuggestedPlacesFragment.KEY_ARG_CATEGORY, selected)
+                }
+            }
             bottomSheet.show(supportFragmentManager, SuggestedPlacesFragment.TAG)
         }
 
-        chipsRecyclerView.adapter = chipsAdapter
+        rvCategories.adapter = categoriesAdapter
 
 
         val cardView = findViewById<CircularRevealCardView>(R.id.cardView)

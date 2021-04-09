@@ -57,6 +57,10 @@ fun Fragment.log(msg: String, tag: String = "ffnet") {
     Log.d(tag, msg)
 }
 
+fun Context.log(msg: String, tag: String = "ffnet") {
+    Log.d(tag, msg)
+}
+
 fun CoroutineScope.log(msg: String, tag: String = "ffnet") {
     Log.d(tag, msg)
 }

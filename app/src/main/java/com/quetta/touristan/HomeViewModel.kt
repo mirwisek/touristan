@@ -1,13 +1,14 @@
 package com.quetta.touristan
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.quetta.touristan.api.Repository
 import com.quetta.touristan.api.RetrofitBuilder
 import com.quetta.touristan.model.PlacePhoto
 import com.quetta.touristan.model.Places
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.consume
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -28,19 +29,24 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 
     val state: StateFlow<HomeState> get() = _state
 
-    private var selectedChip: String? = null
+    private var selectedCategory: String? = null
+
+    private val cache = hashMapOf<String, Places>()
+    var placeType: String = ""
 
     fun handleIntent(location: String?, radius: Int?, type: String) {
+        placeType = type
+
         viewModelScope.launch {
             placesIntent.consumeAsFlow().collect {
                 when (it) {
                     is HomeIntent.GetPlaces -> {
-                        if(selectedChip == null) {
+                        if(selectedCategory == null) {
                             getPlaces(location, radius, type)
-                            selectedChip = type
+                            selectedCategory = type
                         } else {
                             // Only call if the values aren't the same, we want to reduce API cost
-                            if(type != selectedChip)
+                            if(type != selectedCategory)
                                 getPlaces(location, radius, type)
                         }
                     }
@@ -49,54 +55,44 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
+    private fun getPlaces(location: String?, radius: Int?, type: String): Job {
 
-//    private fun getPlaces() {
-//
-//        viewModelScope.launch {
-//            _state.value = HomeState.Loading
-//
-//            val request = FindAutocompletePredictionsRequest.builder()
-//                .setCountries(COUNTRY_CODE)
-//                .setQuery("Tourist site in quetta")
-//                .build()
-//
-//            repository.getPlaces(request).addOnSuccessListener { response ->
-//                log("Success size is " + response.autocompletePredictions.size)
-//                _state.value = HomeState.Places(response.autocompletePredictions)
-//            }.addOnFailureListener { e ->
-//                log("Success size is " + e.message)
-//                _state.value = HomeState.Error(e.message)
-//                e.printStackTrace()
-//            }
-//        }
-//    }
-
-    private fun getPlaces(location: String?, radius: Int?, type: String) {
-
-        viewModelScope.launch {
+        return viewModelScope.launch {
             _state.value = HomeState.Loading
+            // Use cache value if available and not empty
+            if(cache.contains(type) && cache[type]!!.results.isNotEmpty()) {
+                _state.value = HomeState.Result(cache[type])
+            } // Otherwise retrieve fresh list from network
+            else {
+                val callback = object: Callback<Places> {
 
-            val callback = object: Callback<Places> {
+                    override fun onResponse(call: Call<Places>, response: Response<Places>) {
+                        if(type == placeType) {
+                            if(response.isSuccessful) {
+                                log("params ${call.request().url.query}")
+                                log("Success size is " + response.body()?.results?.size)
+                                // Store in cache for later
+                                response.body()?.let { cache[type] = it }
+                                _state.value = HomeState.Result(response.body())
+                            } else {
+                                log("Unsuccessful: " + response.message())
+                                _state.value = HomeState.Error(response.message())
+                            }
+                        } else {
+                            log("not equals ${type} and $placeType")
+                        }
 
-                override fun onResponse(call: Call<Places>, response: Response<Places>) {
-                    if(response.isSuccessful) {
-                        log("Success size is " + response.body()?.results?.size)
-                        _state.value = HomeState.Result(response.body())
-                    } else {
-                        log("Unsuccessful: " + response.message())
-                        _state.value = HomeState.Error(response.message())
                     }
-                }
 
-                override fun onFailure(call: Call<Places>, t: Throwable) {
-                    log("Error: " + t.message)
-                    _state.value = HomeState.Error(t.message)
-                    t.printStackTrace()
-                }
+                    override fun onFailure(call: Call<Places>, t: Throwable) {
+                        log("Error: " + t.message)
+                        _state.value = HomeState.Error(t.message)
+                        t.printStackTrace()
+                    }
 
+                }
+                repository.getPlacesApi(callback, location, radius, type)
             }
-
-            repository.getPlacesApi(callback, location, radius, type)
         }
     }
 
