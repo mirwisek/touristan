@@ -1,150 +1,150 @@
 [
   {
     "id": "B01",
-    "name": "Near Bukhari Petroleum, New، Zarghun Road",
+    "name": "Faysal Bank",
     "location": "30.1766832, 66.9992239",
-    "address": "Faysal Bank",
+    "address": "Near Bukhari Petroleum, New، Zarghun Road",
     "image_ref": "Aap_uEA8fcrwTPwO_hZvX1hPdOsPlpZPgzbGe1cH-SyMd9s6r4Er4hdwfc24zU-W8Ns2uINUis9O0SDU4112Cc094rlRX73T7h9piQGtrAFTKHJI42e9jkgLqfygyftsV-a0bTjpFox6jczowEd6HAMLpUUtSvIWSN15_G37RuFvGGwhXinE",
     "reviews": 4
   },
   {
     "id": "B02",
-    "name": "5XGX+MVF, Quetta, Balochistan",
+    "name": "Allied Bank Ltd. (ABL) - Double Road Br.",
     "location": "30.1766952, 66.9996656",
-    "address": "Allied Bank Ltd. (ABL) - Double Road Br.",
+    "address": "5XGX+MVF, Quetta, Balochistan",
     "reviews": 5
   },
   {
     "id": "B03",
-    "name": "5XHX+2RW, Quetta, Balochistan",
+    "name": "ABL Bank and ATM",
     "location": "30.1776177, 66.99957839",
-    "address": "ABL Bank and ATM",
+    "address": "5XHX+2RW, Quetta, Balochistan",
     "reviews": 3.3
   },
   {
     "id": "B04",
-    "name": "Shop No. 9 and 10 Civic City Complex، Zarghun Road, Quetta, Balochistan",
+    "name": "Askari Bank",
     "location": "30.1784842, 66.9995249",
-    "address": "Askari Bank",
+    "address": "Shop No. 9 and 10 Civic City Complex، Zarghun Road, Quetta, Balochistan",
     "reviews": 2.5
   },
   {
     "id": "B05",
-    "name": "Sirki Rd, Quetta, Balochistan",
+    "name": "The bank of punjab",
     "location": "30.1739541, 67.0052177",
-    "address": "The bank of punjab",
+    "address": "Sirki Rd, Quetta, Balochistan",
     "image_ref": "Aap_uEC_GO1-JOC2CH5u_uJULKQ1R66GE0Flbw2ui66ZoDG2_rlg8zvc1n3OL7R5OmQLnSztnfiQeBf4PGN5curvmrU7x-uVXNsizEiMC7Ap5liN7g2KM3suP_uXP5QvaxPLNaSWf8t2pC4Z3wxqloHNXOUirkhIhyuYavDYkTOBZgypXLoX",
     "reviews": 4.5
   },
   {
     "id": "B06",
-    "name": "Zamana St, Industrial Area, UC Kakar, Quetta, Balochistan",
+    "name": "NBP",
     "location": "30.1764, 67.0062219",
-    "address": "NBP",
+    "address": "Zamana St, Industrial Area, UC Kakar, Quetta, Balochistan",
     "reviews": 3
   },
   {
     "id": "B07",
-    "name": "Double Rd, Civic Center Quetta, Balochistan",
+    "name": "JS Bank Limited, Zarghoon Road Branch",
     "location": "30.1790512, 66.9993727",
-    "address": "JS Bank Limited, Zarghoon Road Branch",
-    "image_id": 301,
+    "address": "Double Rd, Civic Center Quetta, Balochistan",
+    "image_id": "301",
     "reviews": 4.6
   },
   {
     "id": "B08",
-    "name": "Brewery Rd, Railway Housing Society Quetta, Balochistan",
+    "name": "National Bank",
     "location": "30.1904843, 66.98905259",
-    "address": "National Bank",
+    "address": "Brewery Rd, Railway Housing Society Quetta, Balochistan",
     "reviews": 2
   },
   {
     "id": "B09",
-    "name": "Kasi Plaza, Zarghun Rd, Gulshan-e-Hoti, Quetta, Balochistan",
+    "name": "Allied Bank Ltd. (ABL)",
     "location": "30.1757365, 66.99959129",
-    "address": "Allied Bank Ltd. (ABL)",
+    "address": "Kasi Plaza, Zarghun Rd, Gulshan-e-Hoti, Quetta, Balochistan",
     "reviews": 5
   },
   {
     "id": "B10",
-    "name": "Jinnah Rd, Quetta, Balochistan",
+    "name": "The Bank of Panjab",
     "location": "30.19891, 67.0132692",
-    "address": "The Bank of Panjab",
+    "address": "Jinnah Rd, Quetta, Balochistan",
     "image_ref": "Aap_uEBBMsTw0agoOlzxrEjZxGHVj70TAJeC0i9sjmrptDnYqy5u0xcfrJba5Zqpqu-i7eQZhYU-XMaVulzkn4uLspU3YxaAwy8WMTCmBUdpws9B78Cqi57-yQhPEO_s7hR7YkXg-f6PzbHqVEiCSyLfYqRENO4o95CDK7E7KHbvkQqABanc",
     "reviews": 4.3
   },
   {
     "id": "B11",
-    "name": "5XJX+4MQ, Quetta, Balochistan",
+    "name": "Meezan Bank - Double Road Branch",
     "location": "30.1803256, 66.99924229",
-    "address": "Meezan Bank - Double Road Branch",
+    "address": "5XJX+4MQ, Quetta, Balochistan",
     "image_ref": "Aap_uED0RCKJ-sln9GJuZAV2Mpwj_8gM7v52wbjRYD9DhhtsJ6_lFZDeUgz_c4vN4WPq20x6mUkQx33gZy-VBoVag0vyjjwcLLyDwlmh6ePQMFBC0lhEzab1uhwCeZLOjmwQtrhVE_8BEaMm667x2RCg5BbvNXbcb-pgSEjWOb2uK3hQd_8",
     "reviews": 4.5
   },
   {
     "id": "B12",
-    "name": "Masjid Rd, Baldia Town, Quetta, Balochistan 87300",
+    "name": "NBP Masjid Road Branch",
     "location": "30.1910315, 67.0121802",
-    "address": "NBP Masjid Road Branch",
+    "address": "Masjid Rd, Baldia Town, Quetta, Balochistan 87300",
     "reviews": 0
   },
   {
     "id": "B13",
-    "name": "Ship # 7 Civic Commercial Complex Plaza Zarghoon, Double Rd, Quetta, Balochistan",
+    "name": "United Bank Limited",
     "location": "30.1813843, 66.9992424",
-    "address": "United Bank Limited",
+    "address": "Ship # 7 Civic Commercial Complex Plaza Zarghoon, Double Rd, Quetta, Balochistan",
     "reviews": 0
   },
   {
     "id": "B14",
-    "name": "Sirki Rd, Satellite Town, Quetta, Balochistan 87300",
+    "name": "Askari Bank",
     "location": "30.1715634, 67.00151649",
-    "address": "Askari Bank",
+    "address": "Sirki Rd, Satellite Town, Quetta, Balochistan 87300",
     "image_ref": "Aap_uED_57CH91AZHKGNYJTPNv38TlEjf26Xa2APAQO1mn3ni77-S2lAcQNOb606NRKCvygoSEOxEkvkiJW4HIMRV2Vb3_Imdt_69_vZbAJXiV03WNWg1HkVXt0vi3VOtJ3OHaUS3eJGWbFUFOcWs9YJNa1gJtXfu8k9EsWXhe3a2UK_3qaf",
     "reviews": 3.6
   },
   {
     "id": "B15",
-    "name": "1st floor، Agha Super Complex، Chuharmal Rd, Quetta, Balochistan",
+    "name": "Bank Islami",
     "location": "30.1963956, 67.0138862",
-    "address": "Bank Islami",
+    "address": "1st floor، Agha Super Complex، Chuharmal Rd, Quetta, Balochistan",
     "reviews": 4.3
   },
   {
     "id": "B16",
-    "name": "Arbab Plaza، Double Rd, Ahmedzai Colony Quetta, Balochistan",
+    "name": "Bank Alfalah",
     "location": "30.1800361, 66.99892009",
-    "address": "Bank Alfalah",
+    "address": "Arbab Plaza، Double Rd, Ahmedzai Colony Quetta, Balochistan",
     "image_ref": "Aap_uEBkiwiYJ8bX4bspyZDP_jJk4K4ocbRWKXi-OT5F8xIpvM_H0A5HBfNY7hUujRBU7KP1_rQERLPhzhIQknIfCpzdgWMqPiYPAharUPO-YXPkje7FtzTVCGd3hk5WGZh_ppxC3lh2c-hbC3Kg4i3qm80I6G-pQxsewW1iYzFISvg6QaQx",
     "reviews": 3.6
   },
   {
     "id": "B17",
-    "name": "Quarry Rd, Modern Colony, Quetta, Balochistan 87300",
+    "name": "Meezan Bank Limited - Kawari Road Branch",
     "location": "30.1861843, 67.0084932",
-    "address": "Meezan Bank Limited - Kawari Road Branch",
+    "address": "Quarry Rd, Modern Colony, Quetta, Balochistan 87300",
     "reviews": 0
   },
   {
     "id": "B18",
-    "name": "Shop No 605 Khewat No. 200 Khatooni No 234 Ward No 18 Urban No 1 Sharah-e-iqbal Quetta، Shara-e-Iqbal Rd, Quetta, Balochistan",
+    "name": "BankIslami Pakistan limited",
     "location": "30.1971702, 67.0138506",
-    "address": "BankIslami Pakistan limited",
+    "address": "Shop No 605 Khewat No. 200 Khatooni No 234 Ward No 18 Urban No 1 Sharah-e-iqbal Quetta، Shara-e-Iqbal Rd, Quetta, Balochistan",
     "reviews": 5
   },
   {
     "id": "B19",
-    "name": "Brewery Rd, Railway Housing Society Quetta, Balochistan",
+    "name": "Habib Bank Limited",
     "location": "30.1907426, 66.9920391",
-    "address": "Habib Bank Limited",
+    "address": "Brewery Rd, Railway Housing Society Quetta, Balochistan",
     "image_ref": "Aap_uEDubXadaye5lgzNzAIhkNJYfjl3cT1QmzM8KvNCiLfWMDPiPaeTj-Hi7CVC6DqEitcr_rj1hdUwMhIfq0PBysRmSiJc3UMv3dlTOejMHxhUZ7beFr98MQswu_xQT1nU9rGYj9bQ8YuTAAy8OVetHCxLwWN5rAQnpnkPhqI8ZjFlQXbA",
     "reviews": 3.7
   },
   {
     "id": "B20",
-    "name": "M.A Jinnah Road, Quetta, Balochistan",
+    "name": "Bank Al Habib",
     "location": "30.1978058, 67.01231749",
-    "address": "Bank Al_Habib",
+    "address": "M.A Jinnah Road, Quetta, Balochistan",
     "image_ref": "Aap_uEBhXqBHQJkLxygeA09ixkPzXQ4r0-mx6bXyDn59kJg0ARpH9SsRoKMp9lJF0zuk4TXLwsph3uhYzZnlc2QLGXoCCdZSzzajwA02KdjzSAHYoh5n7ypKbZda-0-i1xvaeVKnGkp25_RzbAF_dh5hu8cr6iMwPAqyqt8ji_A94oPS4Kef",
     "reviews": 3.8
   }
