@@ -40,7 +40,7 @@ object PlaceType {
 
     fun getJsonResource(name: String): Int {
         return when (name) {
-            "hospital" -> R.raw.restuarants
+            "hospital" -> R.raw.hospitals
             "bank" -> R.raw.banks
             "restaurant" -> R.raw.restuarants
             "tourist_attraction" -> R.raw.tourists

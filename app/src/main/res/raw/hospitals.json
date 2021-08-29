@@ -1,0 +1,157 @@
+[
+  {
+    "id": "H01",
+    "name": "Al_Shafi Hospital",
+    "location": "30.18586269999999, 67.0004266",
+    "address": "Zarghun Road، Quetta",
+    "image_ref": "Aap_uEA9Hk8tU8UWfq1X2_ExCIt2CFfKaXDO2izKf7zTt3PbFONMsVWEWaLdbos3Y17vf7a8TyH8T3EEOSjbgmigo0Wur_lNVrDUMCIHh8wDhCddt9myO_6d4DSP-8Rrq2QVit8i9Oi-BGC2CFCWrIBP0cgEg37E0wpTTiIYi-XAfO8sgxnp",
+    "reviews": 3.6
+  },
+  {
+    "id": "H02",
+    "name": "Rana Eye Hospital",
+    "location": "30.1850304, 66.99977269999999",
+    "address": "Zarghun Road, Quetta, Balochistan",
+    "image_id": "402",
+    "reviews": 4.8
+  },
+  {
+    "id": "H03",
+    "name": "Al-Shafi Medical Centre",
+    "location": "30.18553, 67.0001939",
+    "address": "Zarghun Rd, Baldia Town, Quetta, Balochistan 87300",
+    "image_ref": "Aap_uEBNeK3OLhbWidAZJlZP82ziLGF8hEIsTfQ0k9AZUoKgw0wVMmo5ddGGevj2b48cPOVy-pXAS5OlVVWZHnA5hWF6Cr1AEaAmPq0w2u0exljlAs9vndas0avG-3sfS0kvmqIFOYtW56ta2y3FyO6FX-xYQ1nV7UefUQFexQgTYY_0rDL8",
+    "reviews": 3.8
+  },
+  {
+    "id": "H04",
+    "name": "Akram Hospital",
+    "location": "30.183883162408044, 66.99938549843267",
+    "address": "Zarghun Road, Quetta, Balochistan, Pakistan",
+    "image_id": "403",
+    "reviews": 3.6
+  },
+  {
+    "id": "H05",
+    "name": "City International Hospital",
+    "location": "30.18889, 67.0022333",
+    "address": "Zarghun Road, Quetta, Balochistan",
+    "image_ref": "Aap_uEABFBGzv1E2CXfkvjVVTN3_rpiav5MofGnO5mtSOYmIx38zvg2awgUAXVjsAVexQ27tayyQJi8re3Bt7bU6wo6vLbDEnZGQoYdabFyNd2stesTQ0Ri9z18Lnrj8exZlTvXZQxqkEN51cAkK__zWoWW1pyHYLQs9diJPTop7lboQzIea",
+    "reviews": 4
+  },
+  {
+    "id": "H06",
+    "name": "Yaseen hospital",
+    "location": "30.19049713611508, 67.00851419658261",
+    "address": "Patel Road, Quetta, Balochistan, Pakistan",
+    "image_id": "404",
+    "reviews": 2.7
+  },
+  {
+    "id": "H07",
+    "name": "Doctor's Hospital",
+    "location": "30.1902694, 67.00828299999999",
+    "address": "Patel Road, Quetta, Balochistan",
+    "image_ref": "Aap_uEBKuRdWrkDBKNNZ3QbCke5H1x5ke6_Pjy4_MXTQ4S2eucqWZeiFkqhjUs7UfXbGRq6b6koI9qCIp1xVxzw-swYSjS5891we9X0W2huyXooMZP5BcZAFJjXaBpJTkh__as_R8fzUWUwRakcad3mCW4aHodxHYSNZ88pI6LxB8Y40t2yE",
+    "reviews": 4
+  },
+  {
+    "id": "H08",
+    "name": "Dr Sultan Health Care And Transplant INSTITUTE",
+    "location": "30.188393, 67.00195699999999",
+    "address": "52Q2+9Q4, Quetta, Balochistan",
+    "image_ref": "Aap_uECSZ4MMXrLm0yOViXRe_dN7AC6DHbUM_qbxo3KnrOZYegJlHXlStQBu0L9s7TTS-ftkBS-6dAj02o6a8WShlFr3WKBYmPEeoSbivQSpr7r9yWjdL8xUoS9gDPA5xqlPPDot_XKksgz5QBC6j_AxzcIlisJx9p-nf-SMPxRqgczdITxz",
+    "reviews": 3.5
+  },
+  {
+    "id": "H09",
+    "name": "Rehan Hospital",
+    "location": "30.1923884, 67.00911599999999",
+    "address": "Quetta, Balochistan",
+    "image_ref": "Aap_uEBtnPMaXAzoGluOJcVaHJ-v8QHZvp2GXNwIjnwO-eiWEgGO_8oHGLx5VK-l2X4PgtgWCBkHVtEIpWc3tMgdhxZG7UrGpNRLJ5PD2W33-AiEW0WT1evAOLnY2j3JY3Yz0zoPi_QgvxJX4-YxZOsFgpWpuoI3z5UMHQdotYgHbxI3o8rY",
+    "reviews": 3.6
+  },
+  {
+    "id": "H10",
+    "name": "Imdad Hospital & Mehnaz Laparoscopic Centre",
+    "location": "30.1893039, 67.0028543",
+    "address": "Jinnah Rd, Imdad Chowk, Baldia Town, Quetta, Balochistan",
+    "image_ref": "Aap_uECKOFRQ-Ue5gFIpcWpn2nwfs1TSTFkCdjXl_npbTaDCMjZPh1Lc_vYVxprEhlGP-AisTLaABjB9xxG-u0IBvrfLy4B8kELwRuM8iRS-4BlVRlnFCnxonhsb4iSNhwNwUaf-ibxB-C4tzpiP3d24_Lx7xHcG472lQmSbgdpVzCINkdJs",
+    "reviews": 3.8
+  },
+  {
+    "id": "H11",
+    "name": "Helper Eye Hospital",
+    "location": "30.1764109, 66.99406159999999",
+    "address": "Quetta, Balochistan",
+    "reviews": 3.8
+  },
+  {
+    "id": "H12",
+    "name": "Saleem shah hospital",
+    "location": "30.1896395, 67.00907939999999",
+    "address": "52Q5+VJ4, Quetta, Balochistan",
+    "reviews": 0
+  },
+  {
+    "id": "H13",
+    "name": "Dr Sultan Tareen Hospital",
+    "location": "30.1904444, 66.99810330000001",
+    "address": "Joint Road, Quetta, Pakistan",
+    "image_ref": "Aap_uEAmae0me5zNJYLdXbPhn7T3rjgriiZzy0ipMVE9PfvExnwQ-cyvMcHDvJ8sJK5Pg2S6UnGCMQRv5TFRRnJwgNSLnJ4m1BanZ9DOisWYZnlSP4DStKJqLHbxKRD3KDvh35eInhqzMkYQi2D7EMDRRMVEaXLVZimObemFSX2xAo8oPO3b",
+    "reviews": 3.4
+  },
+  {
+    "id": "H14",
+    "name": "Quetta Hospital",
+    "location": "30.1922696, 67.0093881",
+    "address": "Fatah Muhmmed Road، Dr Sher Muhammad Rd, Quetta, Balochistan 87300",
+    "reviews": 3.9
+  },
+  {
+    "id": "H15",
+    "name": "Children Hospital",
+    "location": "30.1877916, 67.00744349999999",
+    "address": "52Q4+4X8, Quetta, Balochistan",
+    "image_ref": "Aap_uEDbcOs0dvzbFGvPgHPerWX4IilYGmO0I74sXGPOa4JbyAEXwzp1HvfvfcodoY8TFKJE7qzEvHfe75Cda5pXJ2vUvrBDgpFGYtos7sKWBvH1-KEGz_W4KEmC2oaEq7A0E1GuYpCi0_RAIfvKFgGiHSVeZgljSzVxQ7a2-XOKrMI9kEvv",
+    "reviews": 3.8
+  },
+  {
+    "id": "H16",
+    "name": "Noor Ul Amin Medical And Gasteo Centre",
+    "location": "30.1837835, 67.002994",
+    "address": "52M3+G59, Quetta, Balochistan",
+    "reviews": 3
+  },
+  {
+    "id": "H17",
+    "name": "Saleem Medical Complex",
+    "location": "30.1902878, 67.00730349999999",
+    "address": "Saleem Medical Complex، Colvin Rd, Quetta, Balochistan",
+    "image_ref": "Aap_uED3wq6_d9Q-M3wG2ySCxn9VddzOwo4LSYT3ZTris0Jo8ED0a29bZ0-28Lau96-By3bdCcSH8yAhmoQWuuHwZoy7ufQAViozaO47I6bVXJDMlfRS_Z5wKnDBFBVvjpWF_iQF3vHzaq4y_TvHEMzGss6b4cugz5oV2fIMz9vRkcg2LobQ",
+    "reviews": 3.6
+  },
+  {
+    "id": "H18",
+    "name": "Al-Khair Medical Complex",
+    "location": "30.1861313, 67.0004493",
+    "address": "Zarghun Rd, Baldia Town, Quetta, Balochistan 87300",
+    "image_ref": "Aap_uED2NT5n3A2J9gQ1J-R1D4DMx0vIX-kVS3gLUHu6GuvzFKJJe0_-Pcrr4Ov4DC_8GAy1q_s-P4Oul79Lw8OKRQkPg-VECfo-tHX3PVUs4fxHveCte-KFmC4Ys2McLNMuCzZikgHE7uBXXTbBVwekCboMYOQz57yUep2Z09qciGTp246l",
+    "reviews": 5
+  },
+  {
+    "id": "H19",
+    "name": "Jilani Hospital",
+    "location": "30.1663937, 67.00380609999999",
+    "address": "5283+HG3, Satellite Town, Quetta, Balochistan",
+    "image_id": "401",
+    "reviews": 2.8
+  },
+  {
+    "id": "H20",
+    "name": "Al Zain Medical Centre",
+    "location": "30.1872633, 67.0013173",
+    "address": "Gulberg, Quetta, Balochistan",
+    "reviews": 5
+  }
+]
