@@ -43,6 +43,7 @@ class HomeFragment : Fragment() {
         arguments?.let { args ->
             category = args.getString(key)
         }
+        log("Category is $category")
     }
 
     override fun onCreateView(

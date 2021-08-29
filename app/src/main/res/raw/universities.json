@@ -1,0 +1,74 @@
+[
+  {
+    "id": "U01",
+    "name": "Balochistan University of Information Technology, Engineering and Management Sciences",
+    "location": "30.266173476218658, 66.94405046827362",
+    "address": "Airport Road, Baleli، Quetta, Balochistan, Pakistan",
+    "image_id": "201",
+    "reviews": 4.4
+  },
+  {
+    "id": "U02",
+    "name": "Sardar Bahadur Khan Womens' University",
+    "location": "30.191277557124984, 66.9603554952548",
+    "address": "Bawrery Road, Quetta, Balochistan, Pakistan",
+    "image_id": "202",
+    "reviews": 4
+  },
+  {
+    "id": "U03",
+    "name": "University Of Balochistan",
+    "location": "30.17035695392816, 66.98556792443635",
+    "address": "Sariab Road, Quetta, Balochistan, Pakistan",
+    "image_id": "203",
+    "reviews": 4.2
+  },
+  {
+    "id": "U04",
+    "name": "Alhamd Islamic University",
+    "location": "30.18543806851203, 67.00002233497962",
+    "address": "5XMX+GX8, Quetta, Balochistan, Pakistan",
+    "image_id": "204",
+    "reviews": 0
+  },
+  {
+    "id": "U05",
+    "name": "Bolan University of Medical & Health Sciences",
+    "location": "30.19238202300654, 66.97629765478015",
+    "address": "Brewery Rd, Quetta, Balochistan 87300, Pakistan",
+    "image_id": "205",
+    "reviews": 4.2
+  },
+  {
+    "id": "U06",
+    "name": "Nust Balochistan Campus, Quetta",
+    "location": "30.20241673095881, 67.04202275556078",
+    "address": "Chagi Rd, Cantonment, Quetta, Balochistan",
+    "image_id": "206",
+    "reviews": 4.8
+  },
+  {
+    "id": "U07",
+    "name": "Balochistan Agriculture College",
+    "location": "30.271330169255016, 66.9310206773886",
+    "address": "RCD Hwy, Quetta, Balochistan, Pakistan",
+    "image_id": "207",
+    "reviews": 4.6
+  },
+  {
+    "id": "U08",
+    "name": "BUITEMS City Campus",
+    "location": "30.221084102509217, 66.98280613876697",
+    "address": "Jinnah Town, Quetta, Balochistan, Pakistan",
+    "image_id": "208",
+    "reviews": 4.3
+  },
+  {
+    "id": "U09",
+    "name": "University Law College Quetta",
+    "location": "30.20423392547139, 67.00716990807778",
+    "address": "Khojak Rd, Model Town, Quetta, Balochistan 87300, Pakistan",
+    "image_id": "209",
+    "reviews": 4.5
+  }
+]

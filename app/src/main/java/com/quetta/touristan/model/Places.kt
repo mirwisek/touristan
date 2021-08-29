@@ -19,7 +19,7 @@ data class PlaceItem(
         if(imageRef != null)
             return "${BuildConfig.BASE_API_URL}maps/api/place/photo?key=${RetrofitBuilder.key}&photoreference=${imageRef}&maxwidth=600"
         if(imageID != null)
-            return "https://raw.githubusercontent.com/mirwisek/touristan/master/static/restuarants/${imageID}.jpg"
+            return "https://raw.githubusercontent.com/mirwisek/touristan/master/static/images/${imageID}.jpg"
         return null
     }
 }

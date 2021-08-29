@@ -25,13 +25,26 @@ object PlaceType {
         R.color.category5
     )
 
-    fun getApiValue(name: String): String {
+//    fun getApiValue(name: String): String {
+//        return when (name) {
+//            HOSPITAL -> "hospital"
+//            BANK -> "bank"
+//            RESTAURANT -> "restaurant"
+//            PICNIC -> "tourist_attraction"
+//            UNIVERSITY -> "university"
+//            else -> {
+//                throw IllegalArgumentException("No mapping value found for given argument, this should never occur")
+//            }
+//        }
+//    }
+
+    fun getJsonResource(name: String): Int {
         return when (name) {
-            HOSPITAL -> "hospital"
-            BANK -> "bank"
-            RESTAURANT -> "restaurant"
-            PICNIC -> "tourist_attraction"
-            UNIVERSITY -> "university"
+            "hospital" -> R.raw.restuarants
+            "bank" -> R.raw.banks
+            "restaurant" -> R.raw.restuarants
+            "tourist_attraction" -> R.raw.restuarants
+            "university" -> R.raw.universities
             else -> {
                 throw IllegalArgumentException("No mapping value found for given argument, this should never occur")
             }

@@ -32,10 +32,11 @@ class HomeViewModel(val app: Application, private val repository: Repository) : 
         } ?: listOf()
     }
 
+
     private fun loadPlaceFiles(type: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val jsonString = app.readRawJson(R.raw.restuarants)
+                val jsonString = app.readRawJson(PlaceType.getJsonResource(type))
                 val tType: Type = TypeToken.getParameterized(List::class.java, PlaceItem::class.java).type
                 val places = Gson().fromJson<List<PlaceItem>>(jsonString, tType).shuffled()
                 repository.storeInCache(type, places)
