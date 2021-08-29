@@ -43,7 +43,7 @@ object PlaceType {
             "hospital" -> R.raw.restuarants
             "bank" -> R.raw.banks
             "restaurant" -> R.raw.restuarants
-            "tourist_attraction" -> R.raw.restuarants
+            "tourist_attraction" -> R.raw.tourists
             "university" -> R.raw.universities
             else -> {
                 throw IllegalArgumentException("No mapping value found for given argument, this should never occur")
