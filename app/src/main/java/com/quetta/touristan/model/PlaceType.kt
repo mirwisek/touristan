@@ -3,6 +3,7 @@ package com.quetta.touristan.model
 import com.quetta.touristan.R
 
 object PlaceType {
+
     const val HOSPITAL = "Hospitals"
     const val PICNIC = "Picnic Spots"
     const val BANK = "Banks"

@@ -18,4 +18,6 @@
     <color name="category3">#E91E63</color>
     <color name="category4">#FF01579B</color>
     <color name="category5">#FF9800</color>
+
+    <color name="white_trans">#90FFFFFF</color>
 </resources>

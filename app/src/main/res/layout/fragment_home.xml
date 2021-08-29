@@ -5,18 +5,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipToPadding="false"
+    android:paddingTop="?actionBarSize"
     android:background="#F4F4F4"
     tools:context=".ui.home.HomeFragment">
-
-    <ProgressBar
-        android:visibility="invisible"
-        android:id="@+id/progress"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/textHint"
@@ -38,8 +29,18 @@
         android:layout_height="match_parent"
         android:paddingTop="@dimen/list_item_spacing_half"
         android:paddingBottom="@dimen/list_item_spacing_half"
-        android:layout_marginBottom="?android:actionBarSize"
         tools:context=".SuggestedPlacesFragment"
         tools:listitem="@layout/fragment_suggested_places_list_dialog_item" />
+
+    <ProgressBar
+        android:visibility="invisible"
+        android:id="@+id/progress"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

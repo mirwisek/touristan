@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_hospitals"
-        android:name="com.quetta.touristan.ui.home.HomeFragment"
+        android:name="com.quetta.touristan.ui.PagerFragment"
         android:label="@string/title_hospital"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_pager">
         <argument
             android:name="@string/arg_category"
             app:argType="reference"
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/navigation_picnic"
-        android:name="com.quetta.touristan.ui.home.HomeFragment"
+        android:name="com.quetta.touristan.ui.PagerFragment"
         android:label="@string/title_picnic"
         tools:layout="@layout/fragment_home">
         <argument
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/navigation_banks"
-        android:name="com.quetta.touristan.ui.home.HomeFragment"
+        android:name="com.quetta.touristan.ui.PagerFragment"
         android:label="@string/title_banks"
         tools:layout="@layout/fragment_home">
         <argument
@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/navigation_restaurant"
-        android:name="com.quetta.touristan.ui.home.HomeFragment"
+        android:name="com.quetta.touristan.ui.PagerFragment"
         android:label="@string/title_restaurant"
         tools:layout="@layout/fragment_home">
         <argument
@@ -51,7 +51,7 @@
 
     <fragment
         android:id="@+id/navigation_university"
-        android:name="com.quetta.touristan.ui.home.HomeFragment"
+        android:name="com.quetta.touristan.ui.PagerFragment"
         android:label="@string/title_university"
         tools:layout="@layout/fragment_home">
         <argument

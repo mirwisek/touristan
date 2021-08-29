@@ -14,8 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.quetta.touristan.MainActivity
-import com.quetta.touristan.MapsActivity
+import com.quetta.touristan.ui.MainActivity
 import com.quetta.touristan.R
 import com.quetta.touristan.toast
 

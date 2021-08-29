@@ -1,8 +1,28 @@
 package com.quetta.touristan.model
 
-import com.google.android.libraries.places.api.model.PhotoMetadata
-import com.google.geo.type.Viewport
 import com.google.gson.annotations.SerializedName
+import com.quetta.touristan.BuildConfig
+import com.quetta.touristan.api.RetrofitBuilder
+
+data class PlaceItem(
+    val id: String,
+    val name: String,
+    val location: String,
+    val address: String,
+    @SerializedName("image_ref")
+    val imageRef: String? = null,
+    @SerializedName("image_id")
+    val imageID: String? = null,
+    val reviews: Float = 0F
+) {
+    fun getImageUrl(): String? {
+        if(imageRef != null)
+            return "${BuildConfig.BASE_API_URL}maps/api/place/photo?key=${RetrofitBuilder.key}&photoreference=${imageRef}&maxwidth=600"
+        if(imageID != null)
+            return "https://raw.githubusercontent.com/mirwisek/touristan/master/static/restuarants/${imageID}.jpg"
+        return null
+    }
+}
 
 data class Places(
     @SerializedName("next_page_token")

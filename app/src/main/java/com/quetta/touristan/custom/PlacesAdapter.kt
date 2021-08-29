@@ -8,18 +8,18 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.quetta.touristan.HomeViewModel
 import com.quetta.touristan.R
-import com.quetta.touristan.model.TourPlace
+import com.quetta.touristan.gone
+import com.quetta.touristan.model.PlaceItem
+import com.quetta.touristan.viewmodel.HomeViewModel
 import com.quetta.touristan.visible
 
 
 class PlacesAdapter(
     private val context: Context,
     private val vmHome: HomeViewModel,
-    private var places: List<TourPlace>? = null,
-    private val onClick: ((TourPlace) -> Unit)? = null
+    private var places: List<PlaceItem>? = null,
+    private val onClick: ((PlaceItem) -> Unit)? = null
 ) :
     RecyclerView.Adapter<PlacesAdapter.ViewHolder>() {
 
@@ -49,30 +49,31 @@ class PlacesAdapter(
         places?.get(position)?.let { item ->
             holder.title.text = item.name
             holder.primary.text = item.address
-            holder.ratingBar.rating = item.rating
+            holder.ratingBar.rating = item.reviews
 
-            if (item.photos.isNotEmpty()) {
+            val img = item.getImageUrl()
 
-                holder.image.visible()
+            if (img != null) {
                 Glide.with(context)
-                    .load(vmHome.loadImage(item.photos[0]))
-                    .placeholder(R.drawable.ic_image)
-                    .apply(RequestOptions().override(800, 800))
+                    .load(img)
+//                    .apply(RequestOptions().override(800, 800))
                     .centerCrop()
+                    .error(R.drawable.ic_img_error)
+                    .placeholder(R.drawable.ic_image)
                     .into(holder.image)
+                holder.image.visible()
+            } else {
+                holder.image.setImageResource(0)
+                holder.image.gone()
             }
 
             holder.itemView.setOnClickListener {
                 onClick?.invoke(item)
             }
-
-//                holder.title.text = item.getFullText(null)
-//                holder.primary.text = item.getPrimaryText(null)
-//                holder.secondary.text = item.getSecondaryText(null)
         }
     }
 
-    fun updateItems(places: List<TourPlace>) {
+    fun updateItems(places: List<PlaceItem>) {
         this.places = places
         notifyDataSetChanged()
     }

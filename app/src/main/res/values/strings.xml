@@ -17,4 +17,7 @@
     <string name="category_picnic">tourist_attraction</string>
     <string name="category_university">university</string>
     <string name="action_sign_out">Sign Out</string>
+    <string name="title_activity_dummy_tab">DummyTabActivity</string>
+    <string name="tab_list">Places</string>
+    <string name="tab_locations">Map Locations</string>
 </resources>

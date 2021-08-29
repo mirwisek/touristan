@@ -21,10 +21,9 @@
             android:visibility="gone"
             android:id="@+id/img"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_height="100dp"
+            android:layout_height="200dp"
             tools:visibility="visible"
-            android:scaleType="centerCrop"
+            android:src="@drawable/ic_image"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
