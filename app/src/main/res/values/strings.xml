@@ -20,4 +20,7 @@
     <string name="title_activity_dummy_tab">DummyTabActivity</string>
     <string name="tab_list">Places</string>
     <string name="tab_locations">Map Locations</string>
+    <string name="page_economy">Economy</string>
+    <string name="page_standard">Standard</string>
+    <string name="page_premium">Premium</string>
 </resources>

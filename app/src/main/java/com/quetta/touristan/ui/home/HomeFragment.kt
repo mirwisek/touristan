@@ -1,5 +1,6 @@
 package com.quetta.touristan.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.quetta.touristan.*
+import com.quetta.touristan.custom.FabExtendedOnScrollListener
 import com.quetta.touristan.custom.PlacesAdapter
 import com.quetta.touristan.model.HomeState
+import com.quetta.touristan.ui.DealsActivity
 import com.quetta.touristan.ui.MainActivity
 import com.quetta.touristan.ui.MapsActivity
 import com.quetta.touristan.viewmodel.HomeViewModel
@@ -65,8 +69,14 @@ class HomeFragment : Fragment() {
         recyclerView = view.findViewById(R.id.list)
         val progressBar = view.findViewById<ProgressBar>(R.id.progress)
         val tvHint = view.findViewById<TextView>(R.id.textHint)
+        val fab = view.findViewById<ExtendedFloatingActionButton>(R.id.fab)
 
         val activity = requireActivity() as MainActivity
+        fab.setOnClickListener {
+            val i = Intent(activity, DealsActivity::class.java)
+            startActivity(i)
+        }
+
 
         adapter = PlacesAdapter(requireContext(), vmHome) { placeItem ->
             activity.onPlaceClicked(placeItem)
@@ -75,6 +85,7 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
+        val picnicCategory = getString(R.string.category_picnic)
 
         job = lifecycleScope.launch {
 
@@ -106,6 +117,12 @@ class HomeFragment : Fragment() {
                                 } else {
                                     adapter.updateItems(it)
                                     recyclerView.visible()
+                                    if(categoryPlace == picnicCategory) {
+                                        recyclerView.addOnScrollListener(FabExtendedOnScrollListener(fab))
+                                        fab.visible()
+                                    } else {
+                                        fab.invisible()
+                                    }
                                 }
                             }
                         }

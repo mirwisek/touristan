@@ -42,7 +42,7 @@ object PlaceType {
         return when (name) {
             "hospital" -> R.raw.hospitals
             "bank" -> R.raw.banks
-            "restaurant" -> R.raw.restuarants
+            "restaurant" -> R.raw.restaurants
             "tourist_attraction" -> R.raw.tourists
             "university" -> R.raw.universities
             else -> {

@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Touristan"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".ui.DealsActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Touristan.NoActionBar" />

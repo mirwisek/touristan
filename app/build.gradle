@@ -115,6 +115,7 @@ dependencies {
     // Google-Maps like BottomSheet
     // https://github.com/reline/Google-Maps-BottomSheet
     implementation 'com.github.reline:google-maps-bottomsheet:1.0'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
